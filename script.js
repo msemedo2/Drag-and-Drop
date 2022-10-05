@@ -116,9 +116,12 @@ function updateDOM() {
 function updateItem(id, column) {
 	const selectedArray = listArrays[column];
 	const selectedColumn = listColumns[column].children;
-	if (!selectedColumn[id].textContent) {
-		delete selectedArray[id];
-
+	if (!dragging) {
+		if (!selectedColumn[id].textContent) {
+			delete selectedArray[id];
+		} else {
+			selectedArray[id] = selectedColumn[id].textContent;
+		}
 		updateDOM();
 	}
 }
